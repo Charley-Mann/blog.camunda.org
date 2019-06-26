@@ -2,7 +2,7 @@
 author = "Camunda BPM Team"
 categories = ["Execution"]
 tags = ["Release Note"]
-date = "2019-06-28T11:00:00+01:00"
+date = "2019-06-25T11:00:00+01:00"
 title = "Camunda BPM 7.12.0-alpha1 Released"
 +++
 
@@ -22,9 +22,23 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 
 <!--more-->
 
-## Feature 1
+## Cockpit: BPMN Documentation
+With this alpha Release, we introduce another functionality to make managing Processes in Cockpit easier: Viewing the documentation of your processes. If you documented all or part of your process, you can now view it in the Process Definition as well as the Process Instance view. This way, you don't need to switch to the modeler when you want to access the documentation.
 
-## Feature 2
+Documented Elements are marked with an <button class="btn btn-xs"><i class="glyphicon glyphicon-info-sign"></i></button> on the BPMN Diagramm. Clicking it will open a dialog to view the documentation.
+
+All Documented Elements are also listed in the table below. Clicking on a row will highlight the corresponding element in the Diagram.
+
+{{< figure src="bpmn_documentation.png" alt="Process Documentation">}}
+
+> Please bear in mind that this feature is only available in the Enterprise Edition of the Camunda BPM platform. To try it out anyway, please request a [Free Trial or Quote](https://camunda.com/enterprise/)
+
+## Cockpit: Embedded Stacktraces
+Not everything works according to plan. Camunda provides a lot of tools to debug your process, including stacktraces from failed jobs. Previously, these were only viewable in a separate window. This window does not contain information about the process itself and is not as helpful to an administrator or support team.
+
+We now display incident stacktraces directly in cockpit, making it unnecessary to open new tabs and generating new links. Of course, you can still directly link to the embedded stacktrace in case you need to send it to someone. Just copy the Browser URL with the stacktrace open.
+
+{{< figure src="variable_filters.png" alt="Variable Filter View">}}
 
 ## Feature 3
 
