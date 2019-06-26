@@ -2,7 +2,7 @@
 author = "Camunda BPM Team"
 categories = ["Execution"]
 tags = ["Release Note"]
-date = "2019-06-25T11:00:00+01:00"
+date = "2019-06-28T11:00:00+01:00"
 title = "Camunda BPM 7.12.0-alpha1 Released"
 +++
 
