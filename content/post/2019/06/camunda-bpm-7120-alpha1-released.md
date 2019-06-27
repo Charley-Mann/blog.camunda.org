@@ -8,10 +8,9 @@ title = "Camunda BPM 7.12.0-alpha1 Released"
 
 **Camunda BPM 7.12.0-alpha1** is here and the highlights are:
 
-* Feature 1 ...
-* Feature 2 ...
-* Feature 3 ...
-* [?? Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha1)
+* Cockpit: BPMN Documentation
+* Cockpit: Embedded Stacktraces
+* <!-- todo: adjust me --> [?? Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha1)
 
 You can [Download Camunda for free](https://camunda.com/download/) (click on Preview Release) or [Run it with Docker](https://hub.docker.com/r/camunda/camunda-bpm-platform/).
 
@@ -23,30 +22,27 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 <!--more-->
 
 ## Cockpit: BPMN Documentation
-With this alpha Release, we introduce another functionality to make managing Processes in Cockpit easier: Viewing the documentation of your processes. If you documented all or part of your process, you can now view it in the Process Definition as well as the Process Instance view. This way, you don't need to switch to the modeler when you want to access the documentation.
+With this alpha release, we introduce another functionality to make managing processes in Cockpit easier: viewing the documentation of your processes.
 
-Documented Elements are marked with an <button class="btn btn-xs"><i class="glyphicon glyphicon-info-sign"></i></button> on the BPMN Diagramm. Clicking it will open a dialog to view the documentation.
+If you have added documentation to the flow elements of your process, you can now view it in the process definition as well as the process instance view. This way, you don't need to switch to the Camunda Modeler when you want to access the documentation.
 
-All Documented Elements are also listed in the table below. Clicking on a row will highlight the corresponding element in the Diagram.
+Documented elements are marked with an info sign (<i class="glyphicon glyphicon-info-sign"></i>) on the BPMN diagram. Clicking it will open a dialog to view the documentation. All documented elements are also listed in a table below the diagram. Clicking on a row will highlight the corresponding flow element in the diagram.
 
 {{< figure src="bpmn_documentation.png" alt="Process Documentation">}}
 
 > Please bear in mind that this feature is only available in the Enterprise Edition of the Camunda BPM platform. To try it out anyway, please request a [Free Trial or Quote](https://camunda.com/enterprise/)
 
 ## Cockpit: Embedded Stacktraces
-Not everything works according to plan. Camunda provides a lot of tools to debug your process, including stacktraces from failed jobs. Previously, these were only viewable in a separate window. This window does not contain information about the process itself and is not as helpful to an administrator or support team.
+Not everything goes according to plan. Camunda provides several features to monitor your processes and intervene if necessary. Stacktraces of failed jobs is one of such features. Previously, these were only viewable in a separate browser window.
 
-We now display incident stacktraces directly in cockpit, making it unnecessary to open new tabs and generating new links. Of course, you can still directly link to the embedded stacktrace in case you need to send it to someone. Just copy the Browser URL with the stacktrace open.
+From now on, we display incident stacktraces directly in Cockpit, making it unnecessary to leave Cockpit and open new tabs in your browser. Of course, you can still directly link to the embedded stacktrace in case you need to send it to someone. Just open the stacktrace and copy the current browser URL.
 
 {{< figure src="variable_filters.png" alt="Variable Filter View">}}
 
-## Feature 3
+## Stay Tuned!
 
-<!--no-more-->
-
-## What's Next?
-
-This is the fisrt alpha release on the road to **Camunda BPM 7.12** (due November 30, 2019). Please have a look at our [roadmap](https://camunda.com/learn/community/#roadmap) for what's still to come.
+This is the first alpha release on the road to **Camunda BPM 7.12** (due November 30, 2019). The next developer preview 
+(alpha 2) is scheduled in the end of July and will be packed with new features.
 
 ## Your Feedback Matters!
 
