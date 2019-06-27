@@ -46,7 +46,7 @@ We now display incident stacktraces directly in cockpit, making it unnecessary t
 
 ## What's Next?
 
-This is the fourth alpha release on the road to **Camunda BPM 7.11** (due May 31, 2019). Please have a look at our [roadmap](https://camunda.com/learn/community/#roadmap) for what's still to come.
+This is the fisrt alpha release on the road to **Camunda BPM 7.12** (due November 30, 2019). Please have a look at our [roadmap](https://camunda.com/learn/community/#roadmap) for what's still to come.
 
 ## Your Feedback Matters!
 
