@@ -8,8 +8,10 @@ title = "Camunda BPM 7.12.0-alpha2 Released"
 
 **Camunda BPM 7.12.0-alpha2** is here and the highlights are:
 
-* Features
-* More Features!
+* DMN 1.2 Schema support
+* Error Message in BPMN End Event
+* Add assigneeIn in Task Queries
+* Support for OpenJDK
 * [XX Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha2)
 
 You can [Download Camunda for free](https://camunda.com/download/) (click on Preview Release) or [Run it with Docker](https://hub.docker.com/r/camunda/camunda-bpm-platform/).
@@ -21,10 +23,16 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 
 <!--more-->
 
-## Features
+## DMN 1.2 Schema support
 
 
-## More Features!
+## Error Message in BPMN End Event
+
+
+## Add assigneeIn in Task Queries
+
+
+## Support for OpenJDK
 
 
 ## Stay Tuned!
