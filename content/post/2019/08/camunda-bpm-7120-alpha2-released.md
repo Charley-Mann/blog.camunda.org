@@ -8,10 +8,10 @@ title = "Camunda BPM 7.12.0-alpha2 Released"
 
 **Camunda BPM 7.12.0-alpha2** is here and the highlights are:
 
-* DMN 1.2 Schema support
 * Error Message in BPMN End Event
 * Add assigneeIn in Task Queries
-* Support for OpenJDK
+* DMN 1.2 Schema support
+* Clarified OpenJDK Support
 * [XX Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha2)
 
 You can [Download Camunda for free](https://camunda.com/download/) (click on Preview Release) or [Run it with Docker](https://hub.docker.com/r/camunda/camunda-bpm-platform/).
@@ -23,7 +23,6 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 
 <!--more-->
 
-## DMN 1.2 Schema support
 
 
 ## Error Message in BPMN End Event
@@ -32,7 +31,13 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 ## Add assigneeIn in Task Queries
 
 
-## Support for OpenJDK
+## DMN 1.2 Schema Support
+
+As of this version, DMN models that use the DMN 1.2 namespace can be deployed into the process engine and parsed with the [DMN Model API](https://docs.camunda.org/manual/latest/user-guide/model-api/dmn-model-api/). Note that this is currently limited to the scope of implemented DMN 1.1 features. See our [DMN Implementation Reference](https://docs.camunda.org/manual/latest/reference/dmn11/) for details.
+
+## Clarified OpenJDK Support
+
+With the changes in Oracle's licensing model for OracleJDK, alternative JDKs and JDK builds have moved into the focus of our users. Camunda supports OpenJDK and IBM JDK already since version 7.0. Now, we have clarified that our OpenJDK support includes variants such Oracle OpenJDK, Adopt OpenJDK, Amazon Corretto and Azul Zulu. This applies to this alpha release, as well as previous releases until 7.9.0. See our [Supported Environments documentation](https://docs.camunda.org/manual/latest/introduction/supported-environments/#java-runtime) for a complete list.
 
 
 ## Stay Tuned!
