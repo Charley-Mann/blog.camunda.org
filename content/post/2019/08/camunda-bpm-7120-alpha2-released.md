@@ -12,6 +12,9 @@ title = "Camunda BPM 7.12.0-alpha2 Released"
 * Add assigneeIn in Task Queries
 * DMN 1.2 Schema support
 * Clarified OpenJDK Support
+* Engine Logging Configuration
+* Case-Insensitive Queries
+* Operation Log Annotations
 * [XX Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha2)
 
 You can [Download Camunda for free](https://camunda.com/download/) (click on Preview Release) or [Run it with Docker](https://hub.docker.com/r/camunda/camunda-bpm-platform/).
@@ -22,7 +25,6 @@ If you are interested, you can see the complete [release notes](LINK).
 If you want to dig in deeper, you can find the source code on [GitHub](https://github.com/camunda/camunda-bpm-platform/releases/tag/7.12.0-alpha2).
 
 <!--more-->
-
 
 
 ## Error Message in BPMN End Event
@@ -46,6 +48,30 @@ We introduced two new configuration flags in the Process Engine Configuration th
 <strong>Enable/Disable Logging Of Command Exceptions:</strong> Exceptions that occur during the execution of a command get caught and re-thrown to be handled by the calling user code. Whether or not these exceptions are logged can be configured by the new configuration flag enableCmdExceptionLogging. Bear in mind, that catching but not logging these exceptions can result in a loss of debugging/troubleshooting information. Also, when logging the exceptions, some exceptions might still be logged by the engine and thus can appear twice in the log (e.g., exceptions during job execution). By default, command exception logging is switched on.
 
 <strong>Enable/Disable Reduced Job Exception Logging:</strong> The engine logs exceptions that occur during the execution of a job. Since a failed job can be retried and fail again, those exceptions might appear several times in the log. It is now possible to reduce the output by setting the enableReducedJobExceptionLogging configuration flag to true. This way, exceptions that occur while executing a job that has retries left are not logged. Only the last failure (that uses the last retry) are logged. A known limitation of this is when setting the job retries to 0 or 1 the job would execute once but an exception would not be logged since we currently have no way of checking left retries at the first execution.
+
+
+## Case-Insensitive Queries
+With the Camunda 7.11.0 release we introduced case insensitive semantics for task variable. It is now possible to create case-insensitive process, Case, Execution and VariableInstances queries as well.
+
+
+We also introduce this feature in Cockpit searches. Whenever a search supports case insensitive searches, the options to ignore the case of the name and value will appear. Please note that this option will only be displayed if the search contains a variable, even if the query itself supports this option. It is also possible to use case insensitive searches in Batch and Migration operations, making filtering for specific Process Instances easier.
+
+{{< figure src="case_insenitive_search.png" alt="A Case Insenitive Process Instance Search" >}}
+
+
+The Java and REST-API behave as we described in the [7.11.0-alpha3 Blog Post](https://blog.camunda.com/post/2019/03/camunda-bpm-7110-alpha3-released/). For more Information on how to use it, check how to use the [REST API](https://docs.camunda.org/manual/latest/reference/rest/process-instance/post-query/) or [JAVA API](https://docs.camunda.org/javadoc/camunda-bpm-platform/7.12/org/camunda/bpm/engine/runtime/ProcessInstanceQuery.html) in our documentation.
+
+
+## Operation Log Annotations
+Some Actions require an explanation. With this release, we added the possibility to annotate Actions in the User Operation Log. This helps with auditing and can give a better understanding on why a certain action was performed.
+
+This Function can be found in the User Operations Log in Cockpit and Admin and the column is enabled by default.
+
+
+{{< figure src="log_annotation.png" alt="A Annotated Operation Log Entry" >}}
+
+> Please bear in mind that this feature is only available in the Enterprise Edition of the Camunda BPM platform. To try it out anyway, please request a [Free Trial or Quote](https://camunda.com/enterprise/)
+
 
 ## Stay Tuned!
 
