@@ -30,8 +30,17 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 ## Error Message in BPMN End Event
 
 
-## Add assigneeIn in Task Queries
+## Query Tasks by a list of assignees with the `assigneeIn` filter
 
+With version 7.12-alpha2, it is possible to query for Tasks that are assigned to any assignee in a
+given list of assignee IDs. The feature is available through the Java API, by calling:
+```java
+taskService.createTaskQuery()
+    .taskAssigneeIn("john", "mary", "demo")
+    .list();
+```
+Filtering by assignees can also be done through the Rest API by sending a [HTTP Get](https://docs.camunda.org/manual/latest/reference/rest/task/get-query/) or
+[HTTP Post](https://docs.camunda.org/manual/latest/reference/rest/task/post-query/#request) Request to the `/task` endpoint.
 
 ## DMN 1.2 Schema Support
 
