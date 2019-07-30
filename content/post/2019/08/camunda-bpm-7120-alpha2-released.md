@@ -10,7 +10,8 @@ title = "Camunda BPM 7.12.0-alpha2 Released"
 
 * Error Message in BPMN End Event
 * Add assigneeIn in Task Queries
-* DMN 1.2 Schema support
+* DMN 1.2 Schema Support
+* OR in More Query Types
 * Clarified OpenJDK Support
 * Engine Logging Configuration
 * Case-Insensitive Queries
@@ -45,6 +46,58 @@ Filtering by assignees can also be done through the Rest API by sending a [HTTP 
 ## DMN 1.2 Schema Support
 
 As of this version, DMN models that use the DMN 1.2 namespace can be deployed into the process engine and parsed with the [DMN Model API](https://docs.camunda.org/manual/latest/user-guide/model-api/dmn-model-api/). Note that this is currently limited to the scope of implemented DMN 1.1 features. See our [DMN Implementation Reference](https://docs.camunda.org/manual/latest/reference/dmn11/) for details.
+
+## OR in More Query Types
+
+A special thanks go to  [Fabian Bahle](https://github.com/funfried) who contributed this feature 
+to our codebase.
+
+In Camunda BPM 7.8, we introduced OR in Task Queries. In this release we added the feature to 
+more query types:
+
+* Process Instances
+* Historic Process Instances
+* Historic Task Instances
+
+The criteria of "normal" queries are implicitly linked together with the logical `AND` operator. 
+With the help of OR queries, the criteria are tied together with the logical `OR` operator.
+
+Here you can see an example query which uses the newly introduced Java API:
+```java
+List<ProcessInstance> processInstances = 
+  runtimeService.createProcessInstanceQuery()
+    .or()
+      .processDefinitionKey("invoice")
+      .variableValueEquals("foo", "bar")
+    .endOr()
+    .list();
+```
+
+And this is how the REST API call would look like:
+
+`POST /process-instance`
+```json
+{
+  "orQueries": [
+    {
+      "processDefinitionKey": "invoice",
+      "variables": [{
+        "name": "foo",
+        "operator": "eq",
+        "value": "bar"
+      }]
+    }
+  ]
+}
+```
+
+The queries shown above would retrieve all process instances which either belong to the key 
+"invoice" or that have a variable with the name "foo" and the value "bar".
+
+For more details, please see the documentation about the
+[Java API](http://docs.camunda.org/manual/latest/user-guide/process-engine/process-engine-api/#or-queries) and the
+[REST API](http://docs.camunda.org/manual/latest/reference/rest/process-instance/post-query/#request-with-or-queries).
+
 
 ## Clarified OpenJDK Support
 
