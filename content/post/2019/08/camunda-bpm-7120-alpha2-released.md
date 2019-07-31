@@ -8,7 +8,6 @@ title = "Camunda BPM 7.12.0-alpha2 Released"
 
 **Camunda BPM 7.12.0-alpha2** is here and the highlights are:
 
-* Error Message in BPMN End Event
 * Add assigneeIn in Task Queries
 * DMN 1.2 Schema Support
 * OR in More Query Types
@@ -26,9 +25,6 @@ If you are interested, you can see the complete [release notes](LINK).
 If you want to dig in deeper, you can find the source code on [GitHub](https://github.com/camunda/camunda-bpm-platform/releases/tag/7.12.0-alpha2).
 
 <!--more-->
-
-
-## Error Message in BPMN End Event
 
 
 ## Query Tasks by a list of assignees with the `assigneeIn` filter
@@ -49,22 +45,22 @@ As of this version, DMN models that use the DMN 1.2 namespace can be deployed in
 
 ## OR in More Query Types
 
-A special thanks go to  [Fabian Bahle](https://github.com/funfried) who contributed this feature 
+A special thanks go to [Fabian Bahle](https://github.com/funfried) who contributed this feature
 to our codebase.
 
-In Camunda BPM 7.8, we introduced OR in Task Queries. In this release we added the feature to 
+In Camunda BPM 7.8, we introduced OR in Task Queries. In this release, we added the feature to
 more query types:
 
 * Process Instances
 * Historic Process Instances
 * Historic Task Instances
 
-The criteria of "normal" queries are implicitly linked together with the logical `AND` operator. 
+The criteria of "normal" queries are implicitly linked together with the logical `AND` operator.
 With the help of OR queries, the criteria are tied together with the logical `OR` operator.
 
 Here you can see an example query which uses the newly introduced Java API:
 ```java
-List<ProcessInstance> processInstances = 
+List<ProcessInstance> processInstances =
   runtimeService.createProcessInstanceQuery()
     .or()
       .processDefinitionKey("invoice")
@@ -91,7 +87,7 @@ And this is how the REST API call would look like:
 }
 ```
 
-The queries shown above would retrieve all process instances which either belong to the key 
+The queries shown above would retrieve all process instances which either belong to the key
 "invoice" or that have a variable with the name "foo" and the value "bar".
 
 For more details, please see the documentation about the
@@ -101,7 +97,7 @@ For more details, please see the documentation about the
 
 ## Clarified OpenJDK Support
 
-With the changes in Oracle's licensing model for OracleJDK, alternative JDKs and JDK builds have moved into the focus of our users. Camunda supports OpenJDK and IBM JDK already since version 7.0. Now, we have clarified that our OpenJDK support includes variants such Oracle OpenJDK, Adopt OpenJDK, Amazon Corretto and Azul Zulu. This applies to this alpha release, as well as previous releases until 7.9.0. See our [Supported Environments documentation](https://docs.camunda.org/manual/latest/introduction/supported-environments/#java-runtime) for a complete list.
+With the changes in Oracle's licensing model for OracleJDK, alternative JDKs and JDK builds have moved into the focus of our users. Camunda supports OpenJDK and IBM JDK already since version 7.0. Now, we have clarified that our OpenJDK support includes variants such as Oracle OpenJDK, Adopt OpenJDK, Amazon Corretto and Azul Zulu. This applies to this alpha release, as well as previous releases until 7.9.0. See our [Supported Environments documentation](https://docs.camunda.org/manual/latest/introduction/supported-environments/#java-runtime) for a complete list.
 
 ## Engine Logging Configuration
 
@@ -112,13 +108,13 @@ We introduced two new configuration flags in the Process Engine Configuration th
 <strong>Enable/Disable Reduced Job Exception Logging:</strong> The engine logs exceptions that occur during the execution of a job. Since a failed job can be retried and fail again, those exceptions might appear several times in the log. It is now possible to reduce the output by setting the enableReducedJobExceptionLogging configuration flag to true. This way, exceptions that occur while executing a job that has retries left are not logged. Only the last failure (that uses the last retry) are logged. A known limitation of this is when setting the job retries to 0 or 1 the job would execute once but an exception would not be logged since we currently have no way of checking left retries at the first execution.
 
 
-## Case-Insensitive Queries
-With the Camunda 7.11.0 release, we introduced case insensitive semantics for task variable. It is now possible to create case-insensitive process, Case, Execution, and VariableInstances queries as well. It is also possible to query historical process, task, and case instances this way.
+## Case Insensitive Queries
+With the Camunda 7.11.0 release, we introduced case insensitive semantics for task variable. It is now possible to create case insensitive process, Case, Execution, and VariableInstances queries as well. It is also possible to query historical process, task, and case instances this way.
 
 
 We also introduce this feature in Cockpit searches. Whenever a search supports case insensitive searches, the options to ignore the case of the name and value will appear. Please note that this option will only be displayed if the search contains a variable, even if the query itself supports this option. It is also possible to use case insensitive searches in Batch and Migration operations, making filtering for specific Process Instances easier.
 
-{{< figure src="case_insenitive_search.png" alt="A Case Insenitive Process Instance Search" >}}
+{{< figure src="case_insensitive_search.png" alt="A Case Insenitive Process Instance Search" >}}
 
 
 The Java and REST-API behave as we described in the [7.11.0-alpha3 Blog Post](https://blog.camunda.com/post/2019/03/camunda-bpm-7110-alpha3-released/). For more information on how to use it, check how to use the [REST API](https://docs.camunda.org/manual/latest/reference/rest/process-instance/post-query/) or [JAVA API](https://docs.camunda.org/javadoc/camunda-bpm-platform/7.12/org/camunda/bpm/engine/runtime/ProcessInstanceQuery.html) in our documentation.
