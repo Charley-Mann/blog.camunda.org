@@ -113,7 +113,7 @@ We introduced two new configuration flags in the Process Engine Configuration th
 
 
 ## Case-Insensitive Queries
-With the Camunda 7.11.0 release we introduced case insensitive semantics for task variable. It is now possible to create case-insensitive process, Case, Execution and VariableInstances queries as well.
+With the Camunda 7.11.0 release, we introduced case insensitive semantics for task variable. It is now possible to create case-insensitive process, Case, Execution, and VariableInstances queries as well. It is also possible to query historical process, task, and case instances this way.
 
 
 We also introduce this feature in Cockpit searches. Whenever a search supports case insensitive searches, the options to ignore the case of the name and value will appear. Please note that this option will only be displayed if the search contains a variable, even if the query itself supports this option. It is also possible to use case insensitive searches in Batch and Migration operations, making filtering for specific Process Instances easier.
@@ -121,13 +121,13 @@ We also introduce this feature in Cockpit searches. Whenever a search supports c
 {{< figure src="case_insenitive_search.png" alt="A Case Insenitive Process Instance Search" >}}
 
 
-The Java and REST-API behave as we described in the [7.11.0-alpha3 Blog Post](https://blog.camunda.com/post/2019/03/camunda-bpm-7110-alpha3-released/). For more Information on how to use it, check how to use the [REST API](https://docs.camunda.org/manual/latest/reference/rest/process-instance/post-query/) or [JAVA API](https://docs.camunda.org/javadoc/camunda-bpm-platform/7.12/org/camunda/bpm/engine/runtime/ProcessInstanceQuery.html) in our documentation.
+The Java and REST-API behave as we described in the [7.11.0-alpha3 Blog Post](https://blog.camunda.com/post/2019/03/camunda-bpm-7110-alpha3-released/). For more information on how to use it, check how to use the [REST API](https://docs.camunda.org/manual/latest/reference/rest/process-instance/post-query/) or [JAVA API](https://docs.camunda.org/javadoc/camunda-bpm-platform/7.12/org/camunda/bpm/engine/runtime/ProcessInstanceQuery.html) in our documentation.
 
 
 ## Operation Log Annotations
-Some Actions require an explanation. With this release, we added the possibility to annotate Actions in the User Operation Log. This helps with auditing and can give a better understanding on why a certain action was performed.
+Some Actions require an explanation. With this release, we added the possibility to annotate Actions in the User Operation Log. This helps with auditing and can give a better understanding of why a specific action was performed.
 
-This Function can be found in the User Operations Log in Cockpit and Admin and the column is enabled by default.
+This Function can be found in the User Operations Log in Cockpit and Admin. The column is enabled by default.
 
 
 {{< figure src="log_annotation.png" alt="A Annotated Operation Log Entry" >}}
