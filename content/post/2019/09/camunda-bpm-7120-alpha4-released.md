@@ -25,7 +25,26 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 
 ## Handling Bpmn Error and Escalation in User Tasks
 
-TODO
+In case a business error occur during the exection of an External Task, it is possible to raise a Bpmn Error via the [Java API](https://docs.camunda.org/manual/latest/user-guide/process-engine/external-tasks/#reporting-bpmn-error) or [Rest API](https://docs.camunda.org/manual/latest/reference/rest/external-task/post-bpmn-error/).
+But have you ever wanted to escalate an user task or indicate a busniss error for user task? Within this alpha you can now report a [Bpmn Error](https://docs.camunda.org/manual/latest/reference/bpmn20/events/error-events/#business-errors-vs-technical-errors) or an [Escalation](https://docs.camunda.org/manual/latest/reference/bpmn20/events/escalation-events/) for an user task.
+Whenever a business error occur the user can invoke via [Java](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-error) or [Rest](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-error/) API a Bpmn Error which will be thrown:
+
+```json
+POST /task/aTaskId/bpmnError
+{
+  "errorCode": "process-order-error-543",
+  "errorMessage": "An error occurred during processing order",
+  "variables": {
+	  "orderNumber" : {
+		  "value" : "PL-233",
+		  "type": "String"
+	  }
+  }
+}
+```
+If in process is implemented an error catch event with the respective `errorCode`, the Bpmn Error will be catched and propagated accordingly. The same goes for the reporting an escalation, the respective documentation can be found as follows [Java](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-escalation) and [Rest](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-escalation/) API.
+
+<!-- TODO consider adding an image depending on the rest of the features -->
 
 ## Feature X
 
