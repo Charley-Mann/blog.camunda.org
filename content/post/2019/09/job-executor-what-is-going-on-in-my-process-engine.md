@@ -11,7 +11,7 @@ Process execution in Camunda BPM is done by two types of threads:
 1. Application threads
 2. Job Executor threads
 
-Application threads are threads that call the Camunda Java API from an application context. For example, if we have a REST endpoint that starts a process instance, the HTTP worker thread will invoke `RuntimeService#startProcessInstanceByKey` and run the process instance until wait states are reached. The calling thread receives immediate feedback: If the call fails, we can catch and and handle an exception. If the call does not return, we can debug directly into our process's delegate code and see where execution gets stuck.
+Application threads are threads that call the Camunda Java API from an application context. For example, if we have a REST endpoint that starts a process instance, the HTTP worker thread will invoke `RuntimeService#startProcessInstanceByKey` and run the process instance until wait states are reached. The calling thread receives immediate feedback: If the call fails, we can catch and handle an exception. If the call does not return, we can debug directly into our process's delegate code and see where execution gets stuck.
 
 The second type of threads are job execution threads. A job in the process engine is a piece of work that needs to be done at *some* time in the future. In the case of BPMN timer events, this point in time is defined in the BPMN model. In the case of asynchronous continuations, the time is as soon as possible. Job execution threads take care of this work and are managed by a component called the *job executor*. Being more detached from the application, it is often harder to understand when job execution happens or more importantly when it does not happen or when it is slow.
 
@@ -59,7 +59,9 @@ Possible causes and solutions:
 
 ## Diagnosing Job Acquisition
 
-Problem: A job is available, but still not locked and picked up for execution or only at a low rate.
+Problem:
+
+* A job is available, but still not locked and picked up for execution or only at a low rate.
 
 Identifying the problem:
 
@@ -82,16 +84,18 @@ Possible causes and solutions:
 * Acquisition polls the table not often enough (TODO: better wording)
   * If the job table is empty, job acquisition will apply exponential backoff to its polling. Use the process engine configuration properties `fooWait` and `barWait` (TODO: check and link) to control the backing off.
   * Set up a second job executor to have two acquisition threads.
-* Jobs are no longer picked up, because the thread pool's queue is full and remains in that sate. This indicates that job execution threads are blocked (e.g. waiting for a response they never receive).
+* Jobs are no longer picked up, because the thread pool's queue is full and remains in that state. This indicates that job execution threads are blocked (e.g. waiting for a response they never receive).
   * Take a JVM thread dump to verify this cause and find the blocking line of code. If the threads are blocked in your delegation code, try to rewrite the code such that unlimited blocking can never occur.
 
 ## Diagnosing the thread pool
 
-Problem: Too much time elapses between acquisition and execution of a job.
+Problem:
 
-Identitying the problem:
+* Too much time elapses between acquisition and execution of a job.
 
-As above, set the logger `` to `DEBUG`. This will produce output as follows:
+Identifying the problem:
+
+* As above, set the logger `` to `DEBUG`. This will produce output as follows:
 
 ```
 ```
@@ -108,7 +112,9 @@ Possible causes and solutions:
 
 ## Diagnosing a job during execution
 
-Problem: Job execution begins, but it never completes or takes a long time to complete.
+Problem:
+
+* Job execution begins, but it never completes or takes a long time to complete.
 
 Identifying the problem:
 
