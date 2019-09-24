@@ -9,6 +9,7 @@ title = "Camunda BPM 7.12.0-alpha4 Released"
 **Camunda BPM 7.12.0-alpha4** is here and the highlights are:
 
 * Handling Bpmn Error and Escalation in User Tasks
+* Cascading Changes to Due Dates of Recurring Timers
 * Add Time Triggered Task Listeners in User Tasks
 * Feature X
 *
