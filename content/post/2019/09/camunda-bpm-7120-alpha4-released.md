@@ -46,6 +46,21 @@ If in process is implemented an error catch event with the respective `errorCode
 
 <!-- TODO consider adding an image depending on the rest of the features -->
 
+## Cascading Changes to Due Dates of Recurring Timers
+Within a BPMN model, a user can specify a recurring timer with an [ISO-8601](https://en.wikipedia.org/wiki/ISO_8601#Repeating_intervals) interval string. (e.g. "R3/PT30M")
+The timer stores a due date to indicate when it is ready for execution. For recurring timer, the engine calculates the due date based on the cycle (e.g. "PT30M") and creates a subsequent timer whenever a recurring timer is executed until the number of repeats ("R3" = repeated three times) is reached.
+
+Given a "R3/PT30M" recurring, every timer instance is due 30 minutes after the previous one.
+{{< figure src="no-change.png" alt="three 30-minute intervals indicating the three timer due dates">}}
+Via the managementService it is possible to update the due date of a timer instance. If the due date of <b>Timer1</b> is altered by 15 minutes via `managementService.setJobDuedate(String jobId, Date newDuedate)` the three timers are executed differently.
+
+{{< figure src="non-cascading-change.png" alt="timer 1 is due after 45min, timer 2 after 60min and timer 3 after 90min">}}
+The due date of <b>Timer 1</b> was altered by +15 minutes, so it is due after 45 minutes. However, <b>Timer 2</b> and <b>Timer 3</b> are not affected by this and their due date is still based on the original due date of <b>Timer 1</b>.
+
+However, what if you want a due date change to cascade to subsequent timer instances?
+{{< figure src="cascading-change.png" alt="one 45-minute interval then two 30-minute intervals indicating the three timer due dates">}}
+With this release you can use the `cascade` flag (via [REST API](https://docs.camunda.org/manual/latest/reference/rest/job/put-set-job-duedate/)) or `managementService.setJobDuedate(String jobId, Date newDuedate, boolean cascade)` to achieve this.
+
 ## Feature X
 
 ## What’s Next?
