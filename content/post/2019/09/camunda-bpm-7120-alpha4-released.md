@@ -9,6 +9,7 @@ title = "Camunda BPM 7.12.0-alpha4 Released"
 **Camunda BPM 7.12.0-alpha4** is here and the highlights are:
 
 * Handling Bpmn Error and Escalation in User Tasks
+* Add Time Triggered Task Listeners in User Tasks
 * Feature X
 *
 * [XX Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha4)
@@ -60,6 +61,35 @@ The due date of <b>Timer 1</b> was altered by +15 minutes, so it is due after 45
 However, what if you want a due date change to cascade to subsequent timer instances?
 {{< figure src="cascading-change.png" alt="one 45-minute interval then two 30-minute intervals indicating the three timer due dates">}}
 With this release you can use the `cascade` flag (via [REST API](https://docs.camunda.org/manual/latest/reference/rest/job/put-set-job-duedate/)) or `managementService.setJobDuedate(String jobId, Date newDuedate, boolean cascade)` to achieve this.
+
+## Add Time Triggered Task Listeners in User Tasks
+
+Sometimes it is useful to trigger a task listener of a user task after a certain time has elapsed, e.g. check daily whether the task needs to be reassigned or whether emails need to be sent.
+Up until now, all of this can be done with a boundary event but that has a number of drawbacks when it comes to the cancelation and recreation of the task.
+
+With this alpha, we support a task listener that is triggered after a task has been active for a certain period of time. The listener must be of type `timeout` and can then control 
+how to proceed with the task, including completing and reassigning it.
+
+In order to attach such a listener to a user task, you can configure the following in your BPMN:
+
+```xml
+...
+<bpmn:userTask id="myTask">
+  <bpmn:extensionElements>
+	<camunda:taskListener delegateExpression="${setBusinessKeyListener}" event="timeout" id="timeout-friendly" >
+	  <bpmn:timerEventDefinition>
+		<bpmn:timeDuration xsi:type="bpmn:tFormalExpression">PT1H</bpmn:timeDuration>
+	  </bpmn:timerEventDefinition>
+	</camunda:taskListener>
+  </bpmn:extensionElements>
+</bpmn:userTask>
+...
+```
+
+Adding the `timerEventDefinition` child element to the task listener of type `timeout` will execute the referenced delegate after the specified amount of time after the task was created.
+
+Read more about task listeners in general in the [documentation](https://docs.camunda.org/manual/latest/user-guide/process-engine/delegation-code/#task-listener), about their configuration in the [reference](https://docs.camunda.org/manual/latest/reference/bpmn20/custom-extensions/extension-elements/#tasklistener), and about their migration in the [guide](https://docs.camunda.org/manual/latest/user-guide/process-engine/process-instance-migration/#user-task).
+
 
 ## Feature X
 
