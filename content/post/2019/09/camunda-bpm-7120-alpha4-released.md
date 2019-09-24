@@ -11,8 +11,7 @@ title = "Camunda BPM 7.12.0-alpha4 Released"
 * Handling Bpmn Error and Escalation in User Tasks
 * Cascading Changes to Due Dates of Recurring Timers
 * Add Time Triggered Task Listeners in User Tasks
-* Feature X
-*
+* Java 13 Support
 * [XX Bug Fixes](https://app.camunda.com/jira/issues/?jql=issuetype%20%3D%20%22Bug%20Report%22%20AND%20fixVersion%20%3D%207.12.0-alpha4)
 
 
@@ -91,8 +90,9 @@ Adding the `timerEventDefinition` child element to the task listener of type `ti
 
 Read more about task listeners in general in the [documentation](https://docs.camunda.org/manual/latest/user-guide/process-engine/delegation-code/#task-listener), about their configuration in the [reference](https://docs.camunda.org/manual/latest/reference/bpmn20/custom-extensions/extension-elements/#tasklistener), and about their migration in the [guide](https://docs.camunda.org/manual/latest/user-guide/process-engine/process-instance-migration/#user-task).
 
+## Java 13 Support
 
-## Feature X
+This alpha also brings support for the latest Java 13.
 
 ## What’s Next?
 The next alpha version is scheduled for the end of October and our team is already working on it.
