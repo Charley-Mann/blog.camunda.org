@@ -2,7 +2,7 @@
 author = "Camunda BPM Team"
 categories = ["Execution"]
 tags = ["Release Note"]
-date = "2019-09-26T10:00:00+01:00"
+date = "2019-09-26T11:00:00+01:00"
 title = "Camunda BPM 7.12.0-alpha4 Released"
 +++
 
@@ -53,7 +53,7 @@ The timer stores a due date to indicate when it is ready for execution. For recu
 
 Given a "R3/PT30M" recurring, every timer instance is due 30 minutes after the previous one.
 {{< figure src="no-change.png" alt="three 30-minute intervals indicating the three timer due dates">}}
-Via the `managementService` it is possible to update the due date of a timer instance. If the due date of <b>Timer 1</b> is altered by 15 minutes via `managementService.setJobDuedate(String jobId, Date newDuedate)` the three timers are executed differently.
+Via the ManagementService it is possible to update the due date of a timer instance. If the due date of <b>Timer 1</b> is altered by 15 minutes via `managementService.setJobDuedate(String jobId, Date newDuedate)` the three timers are executed differently.
 
 {{< figure src="non-cascading-change.png" alt="timer 1 is due after 45min, timer 2 after 60min and timer 3 after 90min">}}
 The due date of <b>Timer 1</b> was altered by +15 minutes, so it is due after 45 minutes. However, <b>Timer 2</b> and <b>Timer 3</b> are not affected by this and their due date is still based on the original due date of <b>Timer 1</b>.
@@ -102,4 +102,4 @@ The minor release of Camunda BPM 7.12 is coming this fall (November 30, 2019).
 ## Your Feedback Matters!
 With every release we constantly strive to improve Camunda BPM. To make this possible, we are reliant on your feedback. Feel free to share your ideas and suggestions with us.
 
-You can contact us by writing a post in the forum.
+You can contact us by writing a post in the [forum](https://forum.camunda.org/).
