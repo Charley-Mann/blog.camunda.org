@@ -26,10 +26,10 @@ If you want to dig in deeper, you can find the source code on [GitHub](https://g
 
 ## Handling Bpmn Error and Escalation in User Tasks
 
-In case a business error occur during the execution of an External Task, it is possible to raise a [Bpmn Error](https://docs.camunda.org/manual/latest/reference/bpmn20/events/error-events/#business-errors-vs-technical-errors) via the [Java API](https://docs.camunda.org/manual/latest/user-guide/process-engine/external-tasks/#reporting-bpmn-error) or [REST API](https://docs.camunda.org/manual/latest/reference/rest/external-task/post-bpmn-error/).
-But have you ever wanted to escalate an user task or indicate a business error for user task? Within this alpha you can now report a Bpmn Error or an [Escalation](https://docs.camunda.org/manual/latest/reference/bpmn20/events/escalation-events/) for an user task.
-Whenever a business error occur the user can invoke via [Java API](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-error) or [REST API](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-error/) a Bpmn Error which will be thrown:
-
+In case a business error occurs during the execution of an External Task, it is possible to raise a [Bpmn Error](https://docs.camunda.org/manual/latest/reference/bpmn20/events/error-events/#business-errors-vs-technical-errors).
+But have you ever wanted to escalate a User Task, or indicate a business error for a User Task? As of this alpha, you can report a Bpmn Error or an [Escalation](https://docs.camunda.org/manual/latest/reference/bpmn20/events/escalation-events/) for a User Task.
+Whenever a business error occurs, the user can invoke, via [Java API](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-error) or [REST API](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-error/), a Bpmn Error to be thrown:
+​
 ```json
 POST /task/aTaskId/bpmnError
 {
@@ -43,8 +43,8 @@ POST /task/aTaskId/bpmnError
   }
 }
 ```
-If in process is implemented an error catch event with the respective `errorCode`, the Bpmn Error will be caught and propagated accordingly. The same goes for reporting an escalation, the respective documentation can be found for the [Java API](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-escalation) and the [REST API](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-escalation/).
-
+If, in a Process, an Error Catch Event is implemented with the respective `errorCode`, the Bpmn Error will be caught and propagated accordingly. The same goes for reporting an Escalation, the respective documentation can be found for the [Java API](https://docs.camunda.org/manual/latest/reference/bpmn20/tasks/user-task/#reporting-bpmn-escalation) and the [REST API](https://docs.camunda.org/manual/latest/reference/rest/task/post-bpmn-escalation/).
+​
 {{< figure src="handle-bpmnerror-escalation-usertask.png">}}
 
 ## Cascading Changes to Due Dates of Recurring Timers
